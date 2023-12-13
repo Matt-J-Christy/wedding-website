@@ -1,9 +1,9 @@
 requests
-oauth2client
 autopep8
 flake8
 pre-commit
 pylint
 click
-fsspec
 fastapi
+flask
+markdown

@@ -1,3 +1,4 @@
 wedding/
 *__pycache__*
-app/pictures
+app/pictures/*jpg
+.vscode

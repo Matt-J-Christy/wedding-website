@@ -1,17 +1,17 @@
 # What to Do in Boston
 
-Boston is a walking city. If you're staying even 
+Boston is a walking city. If you're staying even
 close to downtown you will not need to rent a car
-or use your car if you decide to drive. Here are some of 
-our favorite activities to do with visitors and a list 
-of our favorite restaurants and bars. 
+or use your car if you decide to drive. Here are some of
+our favorite activities to do with visitors and a list
+of our favorite restaurants and bars.
 
 ## Things to see & do
 - Fenway tour
 - TD Garden tour
 - Visit the ICA
 - Visit the MFA
-- Walk the Esplanade 
+- Walk the Esplanade
 - Walk through South End or Newbury St.
 
 ## Eating & Drinking
@@ -20,6 +20,7 @@ of our favorite restaurants and bars.
         - Arya Trattoria
         - Nico's Restaurante
         - Parla
+        - Neputune's Oyster House
     - South End
         - Coppa
         - Banyan
