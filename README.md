@@ -10,3 +10,5 @@ python -m venv wedding
 wedding\Scripts\activate.bat
 pip install -r requirements.in
 ```
+
+On Mac use `source venv/bin/activate`
