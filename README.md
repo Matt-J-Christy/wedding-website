@@ -3,6 +3,8 @@
 We've decided to build our own
 wedding website for fun!
 
+Run the flask app: `flask --app main.py --debug run`
+
 ### Getting started
 
 **Create Virtual Environment**
@@ -29,3 +31,19 @@ To get pre-commit hooks working run `pre-commit install` in your terminal.
 When you run any `git commit -m "my message"` the commit hook  script will
 run before you commit is completed. If you have errors (likely you will) you
 need to fix your scripts before committing again.
+
+## Development Notes
+
+- https://readwrite.com/raspberry-pi-web-server-website-hosting/
+- https://projects.raspberrypi.org/en/projects/python-web-server-with-flask
+
+## Using Docker
+
+Build a new docker container with the following command:
+`docker build . -t <my-container-tag>`
+
+In order to run the built container locally you run:
+`docker run -p 5000:5000 -d <my-container-tag>`
+- `-p` publishes the container port to the host so we can access the website
+- `-d` runs the container in the background
+- to interact with the website navigate to `http://localhost:5000/`

@@ -1,4 +1,5 @@
 wedding/
 *__pycache__*
-app/pictures/*jpg
+**jpg**
 .vscode
+credentials.py
