@@ -1,5 +1,20 @@
 <html>
-
+<style>
+  h1 {
+    font-family: didot;
+    font-weight: 300;
+    font-variant: small-caps;
+    text-align: center;
+    font-size: 40px
+  }
+  h3 {
+    font-family: didot;
+    font-weight: 300;
+    font-variant: small-caps;
+    text-align: center;
+    font-size: 25px
+  }
+</style>
 <head>
   <title>Flask Intro - login page</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,11 +22,9 @@
 
 <body>
   <div class="container">
-    <h1>Matt & Victoria Wedding</h1>
-    <h4>Login Below</h4>
-    <br>
-    <br>
-    <form action="" method="post">
+    <h1>Victoria & Matthew</h1>
+    <h3>08.03.2024</h3>
+    <form action="" method="post" align = "center">
       <input type="text" placeholder="Username" name="username" value="{{
           request.form.username }}">
       <input type="password" placeholder="Password" name="password" value="{{
@@ -21,13 +34,11 @@
     {% if error %}
     <p class="error"><strong>Error:</strong> {{ error }}
       {% endif %}
+    <p align="center">
+    <img src="/static/beach_embrace.jpg" width="300" height="450"/>
+    </p>
   </div>
 </body>
 
-<body>
-  <br>
-  <img src="/static/beach_embrace.jpg" width="300" height="450"/>
-  <br>
-</body>
 
 </html>

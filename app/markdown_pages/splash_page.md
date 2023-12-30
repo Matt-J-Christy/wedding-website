@@ -1,13 +1,31 @@
-# Matt & Victoria Wedding
+<style>
+    headers {
+                font-family: didot;
+                font-weight: 300;
+                font-variant: small-caps
+            }
+    bodytext {
+        font-family: didot;
+        font-weight:200;
+        font-size: 20px;
+    }
+    h1 {
+        font-size: 40px;
+    }
+    h3 {
+        font-size: 25px
+    }
+</style>
+<h1 style = "text-align:center"><headers> Victoria & Matthew</headers></h1>
+<h3 style = "text-align:center"><headers>08.03.2024</headers></h3>
 
-#### When
-6pm on August 3rd, 2024
+---
 
-#### Where
-New England Aquarium, Boston MA
+<p style="text-align:center"><bodytext>New England Aquarium, Boston MA
 <br>
 1 Central Wharf, Boston, MA 02110
+</bodytext></p>
 
-<img src="/static/beach_embrace.jpg" style="width: 25%; height: 25%"/>
+<div align = "center"><img src="/static/barge_toast.jpg" style="width: 25%; height: 25%"/></div>
 
-We can't wait to see you there!
+<p style="text-align:center"><bodytext>More details to follow. We look forward to celebrating with you!</bodytext></p>
