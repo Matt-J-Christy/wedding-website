@@ -3,3 +3,4 @@ wedding/
 **jpg**
 .vscode
 credentials.py
+.DS_Store
