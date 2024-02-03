@@ -9,7 +9,6 @@ RUN pip install -r ./requirements.in
 LABEL Maintainer='Matt Christy'
 
 COPY app/ ./app
-COPY templates ./templates
 COPY static ./static
 COPY main.py ./
 
