@@ -36,10 +36,17 @@ def login_required(f):
         else:
             return redirect(url_for('login'))
     return wrap
+<<<<<<< HEAD
 
 
 # define login page
 @app.route('/', methods=['GET', 'POST'])
+=======
+
+
+# define login page
+@app.route('/login', methods=['GET', 'POST'])
+>>>>>>> 411bee9 (chaning file structure a bit to move html into /app folder. adding rate limiting and login requirement to the website)
 @limiter.limit("5/second", override_defaults=True)
 def login():
     error = None
