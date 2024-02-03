@@ -32,10 +32,9 @@ When you run any `git commit -m "my message"` the commit hook  script will
 run before you commit is completed. If you have errors (likely you will) you
 need to fix your scripts before committing again.
 
-## Development Notes
+## Repo Structure
 
-- https://readwrite.com/raspberry-pi-web-server-website-hosting/
-- https://projects.raspberrypi.org/en/projects/python-web-server-with-flask
+
 
 ## Using Docker
 
@@ -47,3 +46,14 @@ In order to run the built container locally you run:
 - `-p` publishes the container port to the host so we can access the website
 - `-d` runs the container in the background
 - to interact with the website navigate to `http://localhost:5000/`
+
+Pushing the image to google cloud's artifact registry
+
+- tag the image: `docker tag <image-name> us-central1-docker.pkg.dev/<PROJECT-ID>/<REPOSITORY>/<image-name>`
+- push the newly tagged image: `docker push  us-central1-docker.pkg.dev/<PROJECT-ID>/<REPOSITORY>/<image-name>`
+
+
+## Development Notes
+
+- https://readwrite.com/raspberry-pi-web-server-website-hosting/
+- https://projects.raspberrypi.org/en/projects/python-web-server-with-flask

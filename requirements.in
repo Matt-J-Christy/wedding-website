@@ -4,6 +4,6 @@ flake8
 pre-commit
 pylint
 click
-fastapi
 flask
 markdown
+Flask-Limiter

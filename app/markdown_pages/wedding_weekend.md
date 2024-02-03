@@ -16,8 +16,7 @@
 - Event Itenerary
     - Start time 6pm
     - Happy Hour 7pm
-    - Reception and Dancing 8pm - 12am
-- Entertainment: [Silver Arrow Band](https://www.silverarrowband.com/?)
+    - Reception and Dancing 8pm - 12am with live music
 
 
 ## Farewell Brunch
