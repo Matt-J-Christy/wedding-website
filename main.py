@@ -112,6 +112,7 @@ def wedding_weekend() -> str:
 
 
 @app.route('/travel')
+@login_required
 def travel() -> str:
     data = {}
     data["page_title"] = "Travel"
