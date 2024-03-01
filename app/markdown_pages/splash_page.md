@@ -6,5 +6,5 @@
 </bodytext></p>
 
 <div align = "center"><img src="/static/barge_toast.jpg" style="width: 25%; height: 25%"/></div>
-
-<p style="text-align:center"><bodytext>More details to follow. We look forward to celebrating with you!</bodytext></p>
+<br>
+<p style="text-align:center"><bodytext>We look forward to celebrating with you!</bodytext></p>

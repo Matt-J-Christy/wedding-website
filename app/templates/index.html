@@ -8,6 +8,7 @@
 
 	<!-- bootstrap -->
 
+	<!-- <link rel="stylesheet" type = "text/css" href="{{ url_for('static', filename='style.css')}}" /> -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
@@ -89,14 +90,27 @@
 			h1 {
 				font-size: 40px;
 			}
+			h2 {
+				font-family: didot;
+				font-size: 35px;
+				text-align: center;
+			}
 			h3 {
 				font-size: 25px;
+			}
+			date_text{
+				font-family: didot;
+				font-weight:200;
+				font-size:18px;
+			}
+			i{
+				font-size: 15px;
 			}
     </style>
 	<title>{{ data.page_title }}</title>
 </head>
 
-<body>
+<body style="background-image: url('static/banner1.jpeg')">
 	<br>
 	<div>
 		<header>
@@ -108,6 +122,7 @@
 	<div class = "topnav"; id = "myTopnav">
 		<a class = "active" href = "/">Home</a>
 		<a href = "/wedding_weekend">Wedding Weekend</a>
+		<a href = "/travel">Travel</a>
 		<a href = "/our_story">Our Story</a>
 		<a href = "/things_to_do">Things To Do</a>
 		<a href="javascript:void(0);" class="icon" onclick="myFunction()">
