@@ -37,9 +37,8 @@ def login_required(f):
             return redirect(url_for('login'))
     return wrap
 
-
 # define login page
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 @limiter.limit("5/second", override_defaults=True)
 def login():
     error = None
