@@ -53,7 +53,7 @@ def login():
     return render_template('login.html', error=error)
 
 
-@app.route("/")
+@app.route("/home")
 @login_required
 def root() -> str:
     data = {}
