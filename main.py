@@ -39,7 +39,7 @@ def login_required(f):
 
 
 # define login page
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 @limiter.limit("5/second", override_defaults=True)
 def login():
     error = None
@@ -104,12 +104,22 @@ def wedding_weekend() -> str:
     data = {}
     data["page_title"] = "The Wedding Weekend"
 
-    # with open('app/markdown_pages/wedding_weekend.md', 'r') as f:
-    #     text = f.read()
-    #     data["html"] = markdown.markdown(text)
+    with open('app/markdown_pages/wedding_weekend.html', 'r') as f:
+        text = f.read()
+        data["html"] = markdown.markdown(text)
 
-    # serve blank pages that aren't done
-    data['html'] = ""
+    return render_template('index.html', data=data)
+
+
+@app.route('/travel')
+@login_required
+def travel() -> str:
+    data = {}
+    data["page_title"] = "Travel"
+
+    with open('app/markdown_pages/travel.html', 'r') as f:
+        text = f.read()
+        data["html"] = markdown.markdown(text)
 
     return render_template('index.html', data=data)
 
