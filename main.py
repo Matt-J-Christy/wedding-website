@@ -53,7 +53,7 @@ def login():
     return render_template('login.html', error=error)
 
 
-@app.route("/")
+@app.route("/home")
 @login_required
 def root() -> str:
     data = {}
@@ -72,12 +72,9 @@ def our_story() -> str:
     data = {}
     data["page_title"] = "Our Story"
 
-    # with open('app/markdown_pages/our_story.md', 'r') as f:
-    #     text = f.read()
-    #     data['html'] = markdown.markdown(text)
-
-    # serve blank pages that aren't done
-    data["html"] = ""
+    with open('app/markdown_pages/our_story.html', 'r') as f:
+        text = f.read()
+        data["html"] = markdown.markdown(text)
 
     return render_template('index.html', data=data)
 
@@ -86,14 +83,11 @@ def our_story() -> str:
 @login_required
 def things_to_do() -> str:
     data = {}
-    data["page_title"] = "Things to do"
+    data["page_title"] = "Things To Do"
 
-    # with open('app/markdown_pages/things_to_do.md', 'r') as f:
-    #     text = f.read()
-    #     data["html"] = markdown.markdown(text)
-
-    # serve blank pages that aren't done
-    data['html'] = ""
+    with open('app/markdown_pages/things_to_do.html', 'r') as f:
+        text = f.read()
+        data["html"] = markdown.markdown(text)
 
     return render_template('index.html', data=data)
 
