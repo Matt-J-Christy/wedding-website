@@ -57,7 +57,7 @@ def login():
 @login_required
 def root() -> str:
     data = {}
-    data["page_title"] = "Splash Page"
+    data["page_title"] = "Home"
 
     with open('app/markdown_pages/splash_page.md', 'r') as f:
         text = f.read()
