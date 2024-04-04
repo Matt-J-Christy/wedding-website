@@ -72,7 +72,7 @@ def our_story() -> str:
     data = {}
     data["page_title"] = "Our Story"
 
-    with open('app/markdown_pages/our_story.html', 'r') as f:
+    with open('app/templates/our_story.html', 'r') as f:
         text = f.read()
         data["html"] = markdown.markdown(text)
 
@@ -85,7 +85,7 @@ def things_to_do() -> str:
     data = {}
     data["page_title"] = "Things To Do"
 
-    with open('app/markdown_pages/things_to_do.html', 'r') as f:
+    with open('app/templates/things_to_do.html', 'r') as f:
         text = f.read()
         data["html"] = markdown.markdown(text)
 
@@ -98,7 +98,7 @@ def wedding_weekend() -> str:
     data = {}
     data["page_title"] = "The Wedding Weekend"
 
-    with open('app/markdown_pages/wedding_weekend.html', 'r') as f:
+    with open('app/templates/wedding_weekend.html', 'r') as f:
         text = f.read()
         data["html"] = markdown.markdown(text)
 
@@ -111,7 +111,7 @@ def travel() -> str:
     data = {}
     data["page_title"] = "Travel"
 
-    with open('app/markdown_pages/travel.html', 'r') as f:
+    with open('app/templates/travel.html', 'r') as f:
         text = f.read()
         data["html"] = markdown.markdown(text)
 
