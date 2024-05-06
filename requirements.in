@@ -7,3 +7,6 @@ click
 flask
 markdown
 Flask-Limiter
+google-cloud-storage
+google-auth
+pandas
