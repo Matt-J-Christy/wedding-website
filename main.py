@@ -7,16 +7,22 @@ from flask import Flask, render_template, redirect, url_for, request, session, f
 from functools import wraps
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
-from app.credentials import username, password, secret_key
+from app.credentials import username, password, secret_key  # , gcp_service_accnt
 import markdown
 import os
+import pandas as pd
+# from app.flask_to_gcs import GcsConnection
 
 app = Flask(__name__,
             static_url_path='/static/',
             template_folder='app/templates'
             )
 
+app.guest_config = pd.read_csv('app/guest_list_config.csv')  # type: ignore
 app.secret_key = secret_key
+# app.gcs_connection = GcsConnection(
+# service_accnt=gcp_service_accnt, gcs_bucket='website-responses') # type: ignore
+
 
 limiter = Limiter(
     get_remote_address,
@@ -116,6 +122,18 @@ def travel() -> str:
         data["html"] = markdown.markdown(text)
 
     return render_template('index.html', data=data)
+
+
+"""
+writing data to GCS
+
+app.gcs_connection.write_to_gcs(rsvp=pd.DataFrame({
+    'GuestName': 'test buddy',
+    'RSVP': 'attending',
+    'Meal': 'Short Rib',
+    "PlusOneName": 'Ole Muppet Feet'
+}, index=[0]))
+"""
 
 
 if __name__ == "__main__":
