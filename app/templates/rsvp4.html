@@ -253,12 +253,130 @@
 		<a href = "/our_story">Our Story</a>
 		<a href = "/things_to_do">Things To Do</a>
 		<a href = "/RSVP">RSVP</a>
-		<a href = "/Registry">Registry</a>
+        <a href = "/Registry">Registry</a>
 		<a href="javascript:void(0);" class="icon" onclick="myFunction()">
 			<i class="fa fa-bars"></i>
 		</a>
 	</div>
-	{{ data.html|safe }}
+    <br>
+    <div align = "center">
+        <form action = "" method = "post">
+            {% set ns = namespace(c = 1) %}
+            {% for name in names %}
+            <bodytext style="font-size: 20px;"> {{ name }} </bodytext>
+            <br>
+            <br>
+            <hr style = "width:50%;margin:auto">
+            <br>
+            <input type = "radio" id = "response_yes_{{ ns.c }}" name = "response_{{ ns.c }}" value = "yes">
+            <label for="response_yes_{{ ns.c }}">Happily Accepts</label>
+            &nbsp;
+            &nbsp;
+            <input type = "radio" id = "response_no_{{ ns.c }}" name = "response_{{ ns.c }}" value = "no">
+            <label for="response_no_{{ ns.c }}">Regretfully Declines</label>
+            <br>
+            <br>
+            <label for = "dinnerchoice_{{ ns.c }}">Dinner Option:</label>
+            <select id = "dinnerchoice_{{ ns.c }}" name = "dinnerchoice_{{ ns.c }}">
+                <option disabled selected value> - select a meal - </option>
+                <option value = "beef">Beef Short Rib</option>
+                <option value = "fish">Branzino (Fish)</option>
+                <option value = "veggie">Mushroom Risoto</option>
+            </select>
+            <br>
+            <br>
+            <label for = "dietary_{{ ns.c }}">Dietary Restrictions:</label>
+            <input type = "text" id = "dietary_{{ ns.c }}" name = "dietary_{{ ns.c }}" placeholder="Allergies?">
+            <br>
+            <br>
+            <label for = "song_{{ ns.c }}">Song Request:</label>
+            <input type = "text" id = "song_{{ ns.c }}" name = "song_{{ ns.c }}" placeholder="Favorite song?">
+            {%  if weddingparty %}
+            <br>
+            <br>
+            <label for = "thurs_{{ ns.c }}">I will be attending the Thursday night event</label>
+            <input type = "checkbox" id = "thurs_{{ ns.c }}" name = "thurs_{{ ns.c }}" value = "yes">
+            {%  endif %}
+            <br>
+            <br>
+            <br>
+                {% set ns.c = ns.c + 1 %}
+            {% endfor %}
+            {% if unknownplus %}
+            <input type = "text" id = "unknown" name = "unknown" placeholder="Guest First & Last Name">
+            <br>
+            <br>
+            <hr style = "width:50%;margin:auto">
+            <br>
+            <input type = "radio" id = "response_yes_unk" name = "response_unk" value = "yes">
+            <label for="response_yes_unk">Happily Accepts</label>
+            &nbsp;
+            &nbsp;
+            <input type = "radio" id = "response_no_unk" name = "response_unk" value = "no">
+            <label for="response_no_unk">Regretfully Declines</label>
+            <br>
+            <br>
+            <label for = "dinnerchoice_unk">Dinner Option:</label>
+            <select id = "dinnerchoice_unk" name = "dinnerchoice_unk">
+                <option disabled selected value> - select a meal - </option>
+                <option value = "beef">Beef Short Rib</option>
+                <option value = "fish">Branzino (Fish)</option>
+                <option value = "veggie">Mushroom Risoto</option>
+            </select>
+            <br>
+            <br>
+            <label for = "dietary_unk">Dietary Restrictions:</label>
+            <input type = "text" id = "dietary_unk" name = "dietary_unk" placeholder="Allergies?">
+            <br>
+            <br>
+            <label for = "song_unk">Song Request:</label>
+            <input type = "text" id = "song_unk" name = "song_unk" placeholder="Favorite song?">
+            {%  if weddingparty %}
+            <br>
+            <br>
+            <label for = "thurs_{{ ns.c }}">I will be attending the Thursday night event</label>
+            <input type = "checkbox" id = "thurs_{{ ns.c }}" name = "thurs_{{ ns.c }}" value = "yes">
+            {%  endif %}
+            <br>
+            <br>
+            <br>
+            {% endif %}
+            {% if children %}
+            {%   for i in [1,2,3] %}
+            <input type = "text" id = "child_{{ i }}" name = "child_{{ i }}" placeholder="Child's Full Name">
+            <br>
+            <br>
+            <hr style = "width:50%;margin:auto">
+            <br>
+            <input type = "radio" id = "response_yes_child_{{ i }}" name = "response_child_{{ i }}" value = "yes">
+            <label for="response_yes_child_{{ i }}">Happily Accepts</label>
+            &nbsp;
+            &nbsp;
+            <input type = "radio" id = "response_no_child_{{ i }}" name = "response_child_{{ i }}" value = "no">
+            <label for="response_no_child_{{ i }}">Regretfully Declines</label>
+            <br>
+            <br>
+            <label for = "dinnerchoice_child_{{ i }}">Dinner Option:</label>
+            <select id = "dinnerchoice_child_{{ i }}" name = "dinnerchoice_child_{{ i }}">
+                <option disabled selected value> - select a meal - </option>
+                <option value = "kids">Children's Meal (kid friendly option)</option>
+                <option value = "beef">Beef Short Rib</option>
+                <option value = "fish">Branzino (Fish)</option>
+                <option value = "veggie">Mushroom Risoto</option>
+            </select>
+            <br>
+            <br>
+            <label for = "dietary_child_{{ i }}">Dietary Restrictions:</label>
+            <input type = "text" id = "dietary_child_{{ i }}" name = "dietary_child_{{ i }}" placeholder="Allergies?">
+            <br>
+            <br>
+            <br>
+            {%  endfor %}
+            {% endif %}
+            <input type = "submit" value = "Submit" name = "submit2">
+        </form>
+    </div>
+    <br>
 	<script>
 		function myFunction() {
 		  var x = document.getElementById("myTopnav");
