@@ -32,9 +32,6 @@ When you run any `git commit -m "my message"` the commit hook  script will
 run before you commit is completed. If you have errors (likely you will) you
 need to fix your scripts before committing again.
 
-## Repo Structure
-
-
 
 ## Using Docker
 
