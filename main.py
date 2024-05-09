@@ -229,7 +229,7 @@ def rsvpform(guest_df: pd.DataFrame = guest_config):
 
         # handle missing plus one
 
-        if session["unknownplus"] or is_search_empty or session["invitee_name"] != "":
+        if session["unknownplus"] or is_search_empty or session["invitee_name"] == "":
             if session["weddingparty"]:
                 try:
                     thurs_response = request.form["thurs_unk"]
@@ -255,7 +255,7 @@ def rsvpform(guest_df: pd.DataFrame = guest_config):
 
         # handle kids
 
-        if session["children"]:
+        if session["children"] and session["invitee_name"] != "":
             names_list = []
             rsvp_list = []
             dinner_list = []
@@ -293,7 +293,7 @@ def rsvpform(guest_df: pd.DataFrame = guest_config):
         rsvp_results["timestamp"] = datetime.datetime.now()
         print(rsvp_results)
 
-        # gcs_connection.write_to_gcs(rsvp=rsvp_results)
+        gcs_connection.write_to_gcs(rsvp=rsvp_results)
 
         return redirect(url_for("thankyou"))
 
