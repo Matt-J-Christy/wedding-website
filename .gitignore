@@ -5,4 +5,6 @@ wedding/
 **png**
 .vscode
 credentials.py
+guest_list_config.csv
 **.DS_Store**
+scratch.txt
