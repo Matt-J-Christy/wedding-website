@@ -148,7 +148,8 @@ def rsvp() -> str:
 
     if (request.method == 'POST'):
         session["invitee_name"] = request.form['invitename']
-        if not df.loc[df.InviteeGroup.str.contains(request.form['invitename'])].empty:
+        if not df.loc[df.InviteeGroup.str.contains(request.form['invitename'])].empty \
+                and session["invitee_name"] != "":
             session["names_list"] = df.loc[df.InviteeGroup.str.contains(
                 request.form['invitename'])].InviteeGroup.str.split(", ").item()
             session["unknownplus"] = bool(df.loc[df.InviteeGroup.str.contains(
@@ -167,7 +168,8 @@ def rsvp() -> str:
 def rsvpform() -> str:
     data = {}
     data["page_title"] = "RSVPForm"
-    if not df.loc[df.InviteeGroup.str.contains(session["invitee_name"])].empty:
+    if not df.loc[df.InviteeGroup.str.contains(session["invitee_name"])].empty \
+            and session["invitee_name"] != "":
         temp = render_template('rsvp4.html', data=data,
                                names=session["names_list"],
                                unknownplus=session["unknownplus"],
