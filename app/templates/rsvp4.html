@@ -260,14 +260,15 @@
 	</div>
     <br>
     <div align = "center">
-        <form action = "" method = "post">
+        <form action = "" method = "post" style = "background-image: url('static/rsvplav.jpg');background-position: left top;background-repeat: repeat-y;">
             {% set ns = namespace(c = 1) %}
             {% for name in names %}
             <bodytext style="font-size: 20px;"> {{ name }} </bodytext>
             <br>
             <br>
             <hr style = "width:50%;margin:auto">
-            <br>
+			<br>
+			<div style = "text-align: center; margin-left: 25%; margin-right: 25%;background-color:#dde6d5;border-radius: 25px;padding: 20px;">
             <input type = "radio" id = "response_yes_{{ ns.c }}" name = "response_{{ ns.c }}" value = "yes">
             <label for="response_yes_{{ ns.c }}">Happily Accepts</label>
             &nbsp;
@@ -297,16 +298,20 @@
             <label for = "thurs_{{ ns.c }}">I will be attending the Thursday night event</label>
             <input type = "checkbox" id = "thurs_{{ ns.c }}" name = "thurs_{{ ns.c }}" value = "yes">
             {%  endif %}
-            <br>
-            <br>
+			</div>
             <br>
                 {% set ns.c = ns.c + 1 %}
             {% endfor %}
             {% if unknownplus %}
-            <input type = "text" id = "unknown" name = "unknown" placeholder="Guest First & Last Name">
+			<bodytext style="font-size: 20px;">Guest</bodytext>
+			<br>
             <br>
+			<hr style = "width:50%;margin:auto">
             <br>
-            <hr style = "width:50%;margin:auto">
+			<div style = "text-align: center; margin-left: 25%; margin-right: 25%;background-color:#dde6d5;border-radius: 25px;padding: 20px;">
+			<label for = "unknown"><b>Enter Guest's Name:</b></label>
+            <input type = "text" id = "unknown" name = "unknown" placeholder="First & Last Name">
+            <br>
             <br>
             <input type = "radio" id = "response_yes_unk" name = "response_unk" value = "yes">
             <label for="response_yes_unk">Happily Accepts</label>
@@ -337,16 +342,20 @@
             <label for = "thurs_unk">I will be attending the Thursday night event</label>
             <input type = "checkbox" id = "thurs_unk" name = "thurs_unk" value = "yes">
             {%  endif %}
-            <br>
-            <br>
+			</div>
             <br>
             {% endif %}
             {% if children %}
+			<bodytext style="font-size: 20px;">Childern</bodytext>
+			<br>
+            <br>
+			<hr style = "width:50%;margin:auto">
+            <br>
             {%   for i in [1,2,3] %}
-            <input type = "text" id = "child_{{ i }}" name = "child_{{ i }}" placeholder="Child's Full Name">
+			<div style = "text-align: center; margin-left: 25%; margin-right: 25%;background-color:#dde6d5;border-radius: 25px;padding: 20px;">
+			<label for = "child_{{ i }}"><b>Enter Child's Name:</b></label>
+            <input type = "text" id = "child_{{ i }}" name = "child_{{ i }}" placeholder="First & Last Name">
             <br>
-            <br>
-            <hr style = "width:50%;margin:auto">
             <br>
             <input type = "radio" id = "response_yes_child_{{ i }}" name = "response_child_{{ i }}" value = "yes">
             <label for="response_yes_child_{{ i }}">Happily Accepts</label>
@@ -368,9 +377,12 @@
             <br>
             <label for = "dietary_child_{{ i }}">Dietary Restrictions:</label>
             <input type = "text" id = "dietary_child_{{ i }}" name = "dietary_child_{{ i }}" placeholder="Allergies?">
+			</div>
             <br>
+			{% 		if i < 3 %}
+			<hr style = "width:35%;margin:auto">
             <br>
-            <br>
+			{% 		endif %}
             {%  endfor %}
             {% endif %}
             <input type = "submit" value = "Submit" name = "submit2">
