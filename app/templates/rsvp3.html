@@ -253,12 +253,25 @@
 		<a href = "/our_story">Our Story</a>
 		<a href = "/things_to_do">Things To Do</a>
 		<a href = "/RSVP">RSVP</a>
-		<a href = "/Registry">Registry</a>
+        <a href = "/Registry">Registry</a>
 		<a href="javascript:void(0);" class="icon" onclick="myFunction()">
 			<i class="fa fa-bars"></i>
 		</a>
 	</div>
-	{{ data.html|safe }}
+    <br>
+	<div align = "center">
+		<form action = "" method = "post">
+			<br>
+			<br>
+			<label for = "invitename">Invitee Name:</label>
+			<input type = "text" name = "invitename"
+				placeholder = "First & Last Name" value="{{ request.form.invitename }}">
+			<input type = "submit" value = "Submit" name = "submit1">
+			<br>
+			<br>
+			<img src = "static/rsvplav1.JPEG"/>
+		</form>
+	</div>
 	<script>
 		function myFunction() {
 		  var x = document.getElementById("myTopnav");
