@@ -140,7 +140,7 @@ def rsvp(guest_df: pd.DataFrame = guest_config):
             guest_df["InviteeGroup"].str.lower().str.contains(search_value)
         ].empty
 
-        if not is_search_empty:
+        if not is_search_empty and session["invitee_name"] != "":
             guest_slice = guest_df.loc[
                 guest_df["InviteeGroup"].str.lower().str.contains(search_value), :
             ]
@@ -166,7 +166,7 @@ def rsvpform(guest_df: pd.DataFrame = guest_config):
         guest_df["InviteeGroup"].str.lower().str.contains(search_value)
     ].empty
 
-    if not is_search_empty:
+    if not is_search_empty and session["invitee_name"] != "":
         temp = render_template(
             "rsvp4.html",
             data=data,
@@ -202,7 +202,7 @@ def rsvpform(guest_df: pd.DataFrame = guest_config):
             dtype=str,
         )
 
-        if not is_search_empty:
+        if not is_search_empty and session["invitee_name"] != "":
             guest_names = session["names_list"]
 
             for i in range(len(session["names_list"])):
@@ -229,7 +229,7 @@ def rsvpform(guest_df: pd.DataFrame = guest_config):
 
         # handle missing plus one
 
-        if session["unknownplus"] or is_search_empty:
+        if session["unknownplus"] or is_search_empty or session["invitee_name"] != "":
             if session["weddingparty"]:
                 try:
                     thurs_response = request.form["thurs_unk"]
