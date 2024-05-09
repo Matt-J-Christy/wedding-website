@@ -10,6 +10,7 @@ from flask_limiter.util import get_remote_address
 from app.credentials import username, password, secret_key
 import markdown
 import os
+import pandas as pd
 
 app = Flask(__name__,
             static_url_path='/static/',
@@ -17,6 +18,25 @@ app = Flask(__name__,
             )
 
 app.secret_key = secret_key
+
+test_data = {"InviteeGroup": ["Cynthia Pizzano, Sandy",
+                              "Donna Rhodes, Jimmy Rhodes, Sydney Rhodes",
+                              "Alexis Rhodes",
+                              "Lindy, Tom"],
+             "UnknownPlusOne": [0,
+                                0,
+                                1,
+                                0],
+             "FamilyInvited": [0,
+                               0,
+                               0,
+                               1],
+             "WeddingParty": [1,
+                              0,
+                              1,
+                              0]}
+
+df = pd.DataFrame(data=test_data)
 
 limiter = Limiter(
     get_remote_address,
@@ -116,6 +136,84 @@ def travel() -> str:
         data["html"] = markdown.markdown(text)
 
     return render_template('index.html', data=data)
+
+
+@app.route('/RSVP', methods=['GET', 'POST'])
+@login_required
+def rsvp() -> str:
+    data = {}
+    data["page_title"] = "RSVP"
+
+    temp = render_template('rsvp3.html', data=data)
+
+    if (request.method == 'POST'):
+        session["invitee_name"] = request.form['invitename']
+        if not df.loc[df.InviteeGroup.str.contains(request.form['invitename'])].empty:
+            session["names_list"] = df.loc[df.InviteeGroup.str.contains(
+                request.form['invitename'])].InviteeGroup.str.split(", ").item()
+            session["unknownplus"] = bool(df.loc[df.InviteeGroup.str.contains(
+                request.form['invitename'])].UnknownPlusOne.item())
+            session["children"] = bool(df.loc[df.InviteeGroup.str.contains(
+                request.form['invitename'])].FamilyInvited.item())
+            session["weddingparty"] = bool(df.loc[df.InviteeGroup.str.contains(
+                request.form['invitename'])].WeddingParty.item())
+        return redirect(url_for('rsvpform'))
+
+    return temp
+
+
+@app.route('/RSVPForm', methods=['GET', 'POST'])
+@login_required
+def rsvpform() -> str:
+    data = {}
+    data["page_title"] = "RSVPForm"
+    if not df.loc[df.InviteeGroup.str.contains(session["invitee_name"])].empty:
+        temp = render_template('rsvp4.html', data=data,
+                               names=session["names_list"],
+                               unknownplus=session["unknownplus"],
+                               children=session["children"],
+                               weddingparty=session["weddingparty"])
+    else:
+        with open('app/markdown_pages/error_rsvp.html', 'r') as f:
+            text = f.read()
+            data["html"] = markdown.markdown(text)
+
+        temp = render_template('index.html', data=data)
+
+    if (request.method == 'POST'):
+        return redirect(url_for('thankyou'))
+
+    return temp
+
+
+@app.route('/thankyou')
+@login_required
+def thankyou() -> str:
+    data = {}
+    data["page_title"] = "ThankYou"
+
+    with open('app/markdown_pages/thank_you.html', 'r') as f:
+        text = f.read()
+        data["html"] = markdown.markdown(text)
+
+    temp = render_template('index.html', data=data)
+
+    return temp
+
+
+@app.route('/Registry')
+@login_required
+def registry() -> str:
+    data = {}
+    data["page_title"] = "Registry"
+
+    with open('app/markdown_pages/registry.html', 'r') as f:
+        text = f.read()
+        data["html"] = markdown.markdown(text)
+
+    temp = render_template('index.html', data=data)
+
+    return temp
 
 
 if __name__ == "__main__":
