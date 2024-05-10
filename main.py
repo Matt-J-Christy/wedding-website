@@ -159,8 +159,16 @@ def rsvp(guest_df: pd.DataFrame = guest_config):
 @app.route("/RSVPForm", methods=["GET", "POST"])
 @login_required
 def rsvpform(guest_df: pd.DataFrame = guest_config):
-    data = {}
-    data["page_title"] = "RSVPForm"
+    """
+    Notes:
+    Dropdown and button select responses left blank
+    will break the ETL logic. Free text return blank
+    if it is not filled out. So dinner and attendance
+    must be filled out.
+
+    Try-Except logic can handle missing data
+    """
+    data = dict(page_title="RSVPForm")
     search_value = session["invitee_name"].lower()
     is_search_empty = guest_df.loc[
         guest_df["InviteeGroup"].str.lower().str.contains(search_value)
@@ -207,11 +215,21 @@ def rsvpform(guest_df: pd.DataFrame = guest_config):
 
             for i in range(len(session["names_list"])):
                 idx = str(i + 1)
-                rsvp_list.append(request.form["response_" + idx])
-                dinner_list.append(request.form["dinnerchoice_" + idx])
                 diet_list.append(request.form["dietary_" + idx])
                 songs.append(request.form["song_" + idx])
 
+                # making RSVP and dinner choice handle missing data
+                try:
+                    rsvp_list.append(request.form["response_" + idx])
+                except KeyError:
+                    rsvp_list.append("Response missing")
+
+                try:
+                    dinner_list.append(request.form["dinnerchoice_" + idx])
+                except KeyError:
+                    dinner_list.append("Response missing")
+
+                # handling wedding party event specific stuff
                 if session["weddingparty"]:
                     try:
                         thurs_attendance.append(request.form["thurs_" + idx])
@@ -220,12 +238,18 @@ def rsvpform(guest_df: pd.DataFrame = guest_config):
                 else:
                     thurs_attendance.append("Not invited")
 
-            rsvp_results["guest_name"] = guest_names
-            rsvp_results["rsvp_result"] = rsvp_list
-            rsvp_results["dinner_option"] = dinner_list
-            rsvp_results["dietary_restriction"] = diet_list
-            rsvp_results["song_request"] = songs
-            rsvp_results["thursday_attendance"] = thurs_attendance
+            row = pd.DataFrame(
+                dict(
+                    guest_name=guest_names,
+                    rsvp_result=rsvp_list,
+                    dinner_option=dinner_list,
+                    dietary_restriction=diet_list,
+                    song_requst=songs,
+                    thrusday_attendance=thurs_attendance,
+                )
+            )
+
+            rsvp_results = pd.concat([rsvp_results, row], ignore_index=True)
 
         # handle missing plus one
 
@@ -238,12 +262,21 @@ def rsvpform(guest_df: pd.DataFrame = guest_config):
             else:
                 thurs_response = "Not invited"
 
+            try:
+                rsvp_resp = request.form["response_unk"]
+            except KeyError:
+                rsvp_resp = 'Response Missing'
+
+            try:
+                dinner = request.form['dinnerchoice_unk']
+            except KeyError:
+                dinner = 'Response Missing'
+
             row = pd.DataFrame(
                 dict(
-                    # TODO: update this naming
                     guest_name=request.form["unknown"],
-                    rsvp_result=request.form["response_unk"],
-                    dinner_option=request.form["dinnerchoice_unk"],
+                    rsvp_result=rsvp_resp,
+                    dinner_option=dinner,
                     dietary_restriction=request.form["dietary_unk"],
                     song_request=request.form["song_unk"],
                     thursday_attendance=thurs_response,
@@ -263,16 +296,21 @@ def rsvpform(guest_df: pd.DataFrame = guest_config):
             songs = ["NA"] * 3
             thurs_attendance = ["Not invited"] * 3
 
-            print(thurs_attendance)
-
             for i in range(3):
                 idx = str(i + 1)
                 names_list.append(request.form["child_" + idx])
-                rsvp_list.append(request.form["response_child_" + idx])
-                dinner_list.append(request.form["dinnerchoice_child_" + idx])
                 diet_list.append(request.form["dietary_child_" + idx])
 
-            print(names_list)
+                try:
+                    rsvp_list.append(request.form["response_child_" + idx])
+                except KeyError:
+                    rsvp_list.append('Response missing')
+
+                try:
+                    dinner_list.append(
+                        request.form["dinnerchoice_child_" + idx])
+                except KeyError:
+                    dinner_list.append('Response missing')
 
             kid_rsvp = pd.DataFrame(
                 dict(
@@ -293,7 +331,7 @@ def rsvpform(guest_df: pd.DataFrame = guest_config):
         rsvp_results["timestamp"] = datetime.datetime.now()
         print(rsvp_results)
 
-        gcs_connection.write_to_gcs(rsvp=rsvp_results)
+        # gcs_connection.write_to_gcs(rsvp=rsvp_results)
 
         return redirect(url_for("thankyou"))
 
