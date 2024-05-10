@@ -331,7 +331,7 @@ def rsvpform(guest_df: pd.DataFrame = guest_config):
         rsvp_results["timestamp"] = datetime.datetime.now()
         print(rsvp_results)
 
-        # gcs_connection.write_to_gcs(rsvp=rsvp_results)
+        gcs_connection.write_to_gcs(rsvp=rsvp_results)
 
         return redirect(url_for("thankyou"))
 
