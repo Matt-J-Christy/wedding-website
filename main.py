@@ -137,12 +137,24 @@ def rsvp(guest_df: pd.DataFrame = guest_config):
         session["invitee_name"] = request.form["invitename"]
         search_value = session["invitee_name"].lower()
         is_search_empty = guest_df.loc[
-            guest_df["InviteeGroup"].str.lower().str.contains(search_value)
+            guest_df["InviteeGroup"].apply(
+                lambda names: any(
+                    [search_value == x.strip().lower()
+                     for x in list(names.split(","))]
+                )
+            )
         ].empty
 
         if not is_search_empty and session["invitee_name"] != "":
             guest_slice = guest_df.loc[
-                guest_df["InviteeGroup"].str.lower().str.contains(search_value), :
+                guest_df["InviteeGroup"].apply(
+                    lambda names: any(
+                        [
+                            search_value == x.strip().lower()
+                            for x in list(names.split(","))
+                        ]
+                    )
+                )
             ]
 
             session["names_list"] = guest_slice["InviteeGroup"].str.split(
@@ -171,7 +183,12 @@ def rsvpform(guest_df: pd.DataFrame = guest_config):
     data = dict(page_title="RSVPForm")
     search_value = session["invitee_name"].lower()
     is_search_empty = guest_df.loc[
-        guest_df["InviteeGroup"].str.lower().str.contains(search_value)
+        guest_df["InviteeGroup"].apply(
+            lambda names: any(
+                [search_value == x.strip().lower()
+                 for x in list(names.split(","))]
+            )
+        )
     ].empty
 
     if not is_search_empty and session["invitee_name"] != "":
@@ -265,12 +282,12 @@ def rsvpform(guest_df: pd.DataFrame = guest_config):
             try:
                 rsvp_resp = request.form["response_unk"]
             except KeyError:
-                rsvp_resp = 'Response Missing'
+                rsvp_resp = "Response Missing"
 
             try:
-                dinner = request.form['dinnerchoice_unk']
+                dinner = request.form["dinnerchoice_unk"]
             except KeyError:
-                dinner = 'Response Missing'
+                dinner = "Response Missing"
 
             row = pd.DataFrame(
                 dict(
@@ -304,13 +321,13 @@ def rsvpform(guest_df: pd.DataFrame = guest_config):
                 try:
                     rsvp_list.append(request.form["response_child_" + idx])
                 except KeyError:
-                    rsvp_list.append('Response missing')
+                    rsvp_list.append("Response missing")
 
                 try:
                     dinner_list.append(
                         request.form["dinnerchoice_child_" + idx])
                 except KeyError:
-                    dinner_list.append('Response missing')
+                    dinner_list.append("Response missing")
 
             kid_rsvp = pd.DataFrame(
                 dict(
