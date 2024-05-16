@@ -263,7 +263,7 @@
         <form action = "" method = "post" style = "background-image: url('static/rsvplav.jpg');background-position: left top;background-repeat: repeat-y;">
             {% set ns = namespace(c = 1) %}
             {% for name in names %}
-            <bodytext style="font-size: 20px;"> {{ name }} </bodytext>
+            <bodytext style="font-size: 20px;background-color: white;"> {{ name }} </bodytext>
             <br>
             <br>
             <hr style = "width:50%;margin:auto">
@@ -287,11 +287,11 @@
             <br>
             <br>
             <label for = "dietary_{{ ns.c }}">Dietary Restrictions:</label>
-            <input type = "text" id = "dietary_{{ ns.c }}" name = "dietary_{{ ns.c }}" placeholder="Allergies?">
+            <input size = 10 type = "text" id = "dietary_{{ ns.c }}" name = "dietary_{{ ns.c }}" placeholder="Allergies?">
             <br>
             <br>
             <label for = "song_{{ ns.c }}">Song Request:</label>
-            <input type = "text" id = "song_{{ ns.c }}" name = "song_{{ ns.c }}" placeholder="Favorite song?">
+            <input size = 13 type = "text" id = "song_{{ ns.c }}" name = "song_{{ ns.c }}" placeholder="Favorite song?">
             {%  if weddingparty %}
             <br>
             <br>
@@ -303,14 +303,14 @@
                 {% set ns.c = ns.c + 1 %}
             {% endfor %}
             {% if unknownplus %}
-			<bodytext style="font-size: 20px;">Guest</bodytext>
+			<bodytext style="font-size: 20px;background-color: white;">Guest</bodytext>
 			<br>
             <br>
 			<hr style = "width:50%;margin:auto">
             <br>
 			<div style = "text-align: center; margin-left: 25%; margin-right: 25%;background-color:#dde6d5;border-radius: 25px;padding: 20px;">
 			<label for = "unknown"><b>Enter Guest's Name:</b></label>
-            <input type = "text" id = "unknown" name = "unknown" placeholder="First & Last Name">
+            <input size = 16 type = "text" id = "unknown" name = "unknown" placeholder="First & Last Name">
             <br>
             <br>
             <input type = "radio" id = "response_yes_unk" name = "response_unk" value = "yes">
@@ -331,11 +331,11 @@
             <br>
             <br>
             <label for = "dietary_unk">Dietary Restrictions:</label>
-            <input type = "text" id = "dietary_unk" name = "dietary_unk" placeholder="Allergies?">
+            <input size = 10 type = "text" id = "dietary_unk" name = "dietary_unk" placeholder="Allergies?">
             <br>
             <br>
             <label for = "song_unk">Song Request:</label>
-            <input type = "text" id = "song_unk" name = "song_unk" placeholder="Favorite song?">
+            <input size = 13 type = "text" id = "song_unk" name = "song_unk" placeholder="Favorite song?">
             {%  if weddingparty %}
             <br>
             <br>
@@ -346,7 +346,7 @@
             <br>
             {% endif %}
             {% if children %}
-			<bodytext style="font-size: 20px;">Childern</bodytext>
+			<bodytext style="font-size: 20px;background-color: white;">Childern</bodytext>
 			<br>
             <br>
 			<hr style = "width:50%;margin:auto">
@@ -354,7 +354,7 @@
             {%   for i in [1,2,3] %}
 			<div style = "text-align: center; margin-left: 25%; margin-right: 25%;background-color:#dde6d5;border-radius: 25px;padding: 20px;">
 			<label for = "child_{{ i }}"><b>Enter Child's Name:</b></label>
-            <input type = "text" id = "child_{{ i }}" name = "child_{{ i }}" placeholder="First & Last Name">
+            <input size = 16 type = "text" id = "child_{{ i }}" name = "child_{{ i }}" placeholder="First & Last Name">
             <br>
             <br>
             <input type = "radio" id = "response_yes_child_{{ i }}" name = "response_child_{{ i }}" value = "yes">
@@ -376,7 +376,7 @@
             <br>
             <br>
             <label for = "dietary_child_{{ i }}">Dietary Restrictions:</label>
-            <input type = "text" id = "dietary_child_{{ i }}" name = "dietary_child_{{ i }}" placeholder="Allergies?">
+            <input size = 10 type = "text" id = "dietary_child_{{ i }}" name = "dietary_child_{{ i }}" placeholder="Allergies?">
 			</div>
             <br>
 			{% 		if i < 3 %}
