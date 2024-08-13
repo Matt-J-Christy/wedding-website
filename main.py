@@ -9,7 +9,7 @@ from flask_limiter.util import get_remote_address
 import os
 from app.credentials import username, password, secret_key
 from app.run import app_blueprint
-from app.rsvp import rsvp_blueprint
+# from app.rsvp import rsvp_blueprint
 
 
 app = Flask(__name__, static_url_path="/static/",
@@ -18,8 +18,8 @@ app.secret_key = secret_key
 
 # register page blueprints for the website
 app.register_blueprint(app_blueprint)
-app.register_blueprint(rsvp_blueprint)
-
+# app.register_blueprint(rsvp_blueprint)
+# turn off the RVSP page
 
 limiter = Limiter(
     get_remote_address,

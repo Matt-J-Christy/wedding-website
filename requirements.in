@@ -10,3 +10,5 @@ Flask-Limiter
 google-cloud-storage
 google-auth
 pandas
+fsspec
+gcsfs

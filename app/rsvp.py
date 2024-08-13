@@ -168,8 +168,8 @@ def rsvpform(guest_df: pd.DataFrame = guest_config):
                     rsvp_result=rsvp_list,
                     dinner_option=dinner_list,
                     dietary_restriction=diet_list,
-                    song_requst=songs,
-                    thrusday_attendance=thurs_attendance,
+                    song_request=songs,
+                    thursday_attendance=thurs_attendance,
                 )
             )
 
