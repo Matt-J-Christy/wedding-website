@@ -95,16 +95,16 @@ def travel() -> str:
     return render_template("index.html", data=data)
 
 
-@app_blueprint.route("/Registry")
-@login_required
-def registry() -> str:
-    data = {}
-    data["page_title"] = "Registry"
+# @app_blueprint.route("/Registry")
+# @login_required
+# def registry() -> str:
+#     data = {}
+#     data["page_title"] = "Registry"
 
-    with open("app/markdown_pages/registry.html", "r") as f:
-        text = f.read()
-        data["html"] = text
+#     with open("app/markdown_pages/registry.html", "r") as f:
+#         text = f.read()
+#         data["html"] = text
 
-    temp = render_template("index.html", data=data)
+#     temp = render_template("index.html", data=data)
 
-    return temp
+#     return temp

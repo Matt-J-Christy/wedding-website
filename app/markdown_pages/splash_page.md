@@ -1,10 +1,11 @@
 
 <br>
-<p style="text-align:center"><bodytext>New England Aquarium, Boston MA
+<p style="text-align:center"><bodytext>Thank you all so much for coming to our wedding - we had a blast!
 <br>
-1 Central Wharf, Boston, MA 02110
+Pictures are organized in tabs and if you click on the photo it will automatically download!
+<br>
+Feel free to grab any photos you want!
 </bodytext></p>
 
-<div align = "center"><img src="/static/barge_toast.jpg" style="width: 25%; height: 25%"/></div>
+<div align = "center"><img src="/static/viccarnealwed-8519.jpg" style="width: 25%; height: 25%"/></div>
 <br>
-<p style="text-align:center"><bodytext>We look forward to celebrating with you!</bodytext></p>
